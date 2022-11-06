@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <complex1.h>
+#include <complex.h>
 
 TEST(mylib, add) {
     Complex<double> c1 = Complex<double>(1, 2);
