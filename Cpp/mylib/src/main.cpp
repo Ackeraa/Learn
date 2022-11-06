@@ -1,11 +1,11 @@
 #include <iostream>
-#include <complex.h>
+#include "complex1.h"
 
 using namespace std;
 
 int main()
 {
-    Complex<double> c1 = Complex<double>(1, 2);
+    Complex<double> c1 = Complex<double>(2, 2);
     Complex<double> c2 = Complex<double>(3, 4);
     Complex<double> c3 = c1 + c2;
 
