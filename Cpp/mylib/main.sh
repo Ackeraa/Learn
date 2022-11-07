@@ -1,5 +1,4 @@
 cmake -S . -B build 
 cmake --build build
-cd build && ctest
-make
+cd build && make
 ./bin/main
