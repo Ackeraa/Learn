@@ -1,4 +1,4 @@
-#include <complex.h>
+#include <mycomplex.h>
 #include <gtest/gtest.h>
 using namespace mylib;
 
@@ -122,4 +122,3 @@ TEST(complex, compare) {
   EXPECT_TRUE(c1 >= c2) << "should be same";
   EXPECT_TRUE(c3 >= c1) << "should be greater";
 }
-
