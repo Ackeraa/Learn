@@ -1,3 +1,4 @@
+namespace mylib {
     template<typename T>
     class Complex {
         public:
@@ -25,3 +26,4 @@
         private:
             value_type real, imag;
     };
+}

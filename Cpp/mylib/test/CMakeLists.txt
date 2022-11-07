@@ -1,7 +1,7 @@
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
  
-add_executable(unit_tests complex_add.cpp)
+add_executable(unit_tests test_complex.cpp)
 
 target_link_libraries(unit_tests
     PUBLIC

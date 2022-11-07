@@ -2,6 +2,7 @@
 #include "complex.h"
 
 using namespace std;
+using namespace mylib;
 
 int main()
 {
