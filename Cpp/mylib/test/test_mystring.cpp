@@ -56,14 +56,14 @@ TEST(string, subscript) {
   EXPECT_EQ(s1[1], 'd') << "should be d";
 }
 
-TEST(string, length) {
+TEST(string, size) {
   string s1 = "abc";
   string s2 = "abcdefg";
   string s3 = "";
 
-  EXPECT_EQ(s1.length(), 3) << "should be 3";
-  EXPECT_EQ(s2.length(), 7) << "should be 7";
-  EXPECT_EQ(s3.length(), 0) << "should be 0";
+  EXPECT_EQ(s1.size(), 3) << "should be 3";
+  EXPECT_EQ(s2.size(), 7) << "should be 7";
+  EXPECT_EQ(s3.size(), 0) << "should be 0";
 }
 
 TEST(string, swap) {

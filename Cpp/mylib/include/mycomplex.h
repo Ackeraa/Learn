@@ -4,7 +4,7 @@
 namespace mylib {
 template <typename T> class complex {
 public:
-  typedef T value_type;
+  using value_type = T;
 
   complex(const T &r = T(), const T &i = T()) : re(r), im(i) {}
   complex(const complex &c) : re{c.re}, im{c.im} {}
@@ -13,8 +13,8 @@ public:
 
   T real() const { return re; }
   T imag() const { return im; }
-  void real(value_type r) { re = r; }
-  void imag(value_type i) { im = i; }
+  void real(T r) { re = r; }
+  void imag(T i) { im = i; }
 
   complex &operator=(const T &x);
   complex &operator+=(const T &x);

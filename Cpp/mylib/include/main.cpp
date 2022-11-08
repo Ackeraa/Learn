@@ -1,11 +1,12 @@
-#include "mycomplex.h"
+#include "myvector.h"
 #include <iostream>
 
 using namespace std;
+using namespace mylib;
 
 int main() {
-  string s1("hello");
-  cout << s1 << endl;
+  vector<int>v;
+  cout << v.sz << endl;
 
   return 0;
 }

@@ -12,7 +12,7 @@ public:
   ~string();
 
   const char *c_str() const { return str; }
-  size_t length() const { return strlen(str); }
+  size_t size() const { return strlen(str); }
   void swap(string &s);
   
   bool operator==(const string &s) const;
