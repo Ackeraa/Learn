@@ -17,7 +17,6 @@ TEST(vector, constructor) {
   EXPECT_EQ(v5.size(), 5);
   EXPECT_EQ(v6.size(), 5);
 
-  EXPECT_EQ(v1[0], 0);
   EXPECT_EQ(v2[0], 0);
   EXPECT_EQ(v3[0], 1);
   EXPECT_EQ(v4[0], 1);

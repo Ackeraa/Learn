@@ -74,3 +74,12 @@ TEST(string, swap) {
   EXPECT_TRUE(strcmp(s1.c_str(), "def") == 0) << "should be def";
   EXPECT_TRUE(strcmp(s2.c_str(), "abc") == 0) << "should be abc";
 }
+
+TEST(string, move) {
+  string s1 = "abc";
+  // string s2 = std::move(s1);
+
+  // EXPECT_TRUE(strcmp(s1.c_str(), "") == 0) << "should be empty";
+  // EXPECT_TRUE(strcmp(s2.c_str(), "abc") == 0) << "should be abc";
+}
+

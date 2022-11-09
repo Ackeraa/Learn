@@ -6,13 +6,12 @@ namespace mylib {
 template <typename T> class vector {
 public:
   vector() : sz(0), elem(nullptr) {}
-  explicit vector(size_t s) : sz(s), elem(new T[s]) {}
-  vector(size_t s, const T &v);
+  explicit vector(size_t s, const T &v = T());
   vector(const vector &v);
   vector(std::initializer_list<T> lst);
   vector &operator=(const vector &v);
 
-  vector operator[](size_t i) { return elem[i]; }
+  T &operator[](size_t i) { return elem[i]; }
   size_t size() const { return sz; }
 
 private:
@@ -50,7 +49,6 @@ inline vector<T> &vector<T>::operator=(const vector<T> &v) {
 
   return *this;
 }
-
 
 
 } // namespace mylib

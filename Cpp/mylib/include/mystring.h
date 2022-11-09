@@ -8,13 +8,15 @@ class string {
 public:
   string(const char *s = 0);
   string(const string &s);
+  string(string &&s) : str(std::move(s.str)) {}
   string &operator=(const string &s);
-  ~string();
+
+  ~string() { delete[] str; }
 
   const char *c_str() const { return str; }
   size_t size() const { return strlen(str); }
   void swap(string &s);
-  
+
   bool operator==(const string &s) const;
   bool operator!=(const string &s) const;
   bool operator<(const string &s) const;
@@ -30,6 +32,8 @@ public:
 
   char &operator[](size_t i) { return str[i]; }
 
+  static size_t static_var;
+  static void set_static(size_t i) { static_var = i; }
 
 private:
   char *str;
@@ -45,17 +49,15 @@ inline string::string(const char *s) {
   }
 }
 
-inline string::~string() { delete[] str; }
-
 inline string::string(const string &s) {
   str = new char[strlen(s.str) + 1];
   strcpy(str, s.str);
 }
 
 inline void string::swap(string &s) {
-  char *tmp = str;
-  str = s.str;
-  s.str = tmp;
+  char *tmp = std::move(str);
+  str = std::move(s.str);
+  s.str = std::move(tmp);
 }
 
 inline string &string::operator=(const string &s) {
