@@ -1,28 +1,44 @@
+#include "mymatrix.h"
 #include <iostream>
 #include <string>
 
-using namespace std;
+using namespace mylib;
 
 void f(std::initializer_list<int> lst) {
   for (int i = 0; i != lst.size(); ++i) {
-    cout << lst.begin()[i] << endl;
+    std::cout << lst.begin()[i] << std::endl;
   }
 
-  cout << endl;
+  std::cout << std::endl;
 
   for (auto p = lst.begin(); p != lst.end(); ++p) {
-    cout << *p << endl;
+    std::cout << *p << std::endl;
   }
 
-  cout << endl;
+  std::cout << std::endl;
 
   for (auto x : lst) {
-    cout << x << endl;
+    std::cout << x << std::endl;
   }
 }
 
+class Base {
+  private:
+    int *p;
+  public:
+    Base() = default;
+    Base(int *p) : p{p}{}
+    virtual void print() {
+      std::cout << "Base: " << *p << std::endl;
+    }
+
+};
+
 int main() {
-  f({1, 2, 3, 4, 5});
+  Base b = Base(new int{10});
+  Base b1 = Base(b);
+
+  b.print();
 
   return 0;
 }

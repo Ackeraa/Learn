@@ -27,7 +27,7 @@ inline vector<T>::vector(size_t s, const T &v) : sz(s), elem(new T[s]) {
 }
 
 template <typename T>
-inline vector<T>::vector(const vector<T> &v) : sz(v.sz), elem(new T[v.sz]) {
+inline vector<T>::vector(const vector &v) : sz(v.sz), elem(new T[v.sz]) {
   std::copy(v.elem, v.elem + v.sz, elem);
 }
 
@@ -38,7 +38,7 @@ inline vector<T>::vector(std::initializer_list<T> lst)
 }
 
 template <typename T>
-inline vector<T> &vector<T>::operator=(const vector<T> &v) {
+inline vector<T> &vector<T>::operator=(const vector &v) {
   if (this == &v) {
     return *this;
   }
