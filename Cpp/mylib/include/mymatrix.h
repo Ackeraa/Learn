@@ -30,6 +30,21 @@ public:
   template <class X>
   friend matrix<X> operator+(const matrix<X> &a, const matrix<X> &b);
 
+  template <class X>
+  friend matrix<X> operator-(const matrix<X> &a, const matrix<X> &b);
+
+  template <class X>
+  friend matrix<X> operator*(const matrix<X> &a, const matrix<X> &b);
+
+  template <class X>
+  friend matrix<X> operator*(const matrix<X> &m, const X &v);
+
+  template <class X>
+  friend matrix<X> operator*(const X &v, const matrix<X> &m);
+
+  template <class X>
+  friend matrix<X> operator/(const matrix<X> &m, const X &v);
+
 private:
   std::array<int, 2> dim;
   T *elem;

@@ -1,5 +1,5 @@
-#include <iostream>
 #pragma once
+#include <iostream>
 
 namespace mylib {
 
@@ -11,8 +11,19 @@ public:
   vector(std::initializer_list<T> lst);
   vector &operator=(const vector &v);
 
+  ~vector() { delete[] elem; }
+
   T &operator[](size_t i) { return elem[i]; }
   size_t size() const { return sz; }
+
+  vector &operator+=(const vector &v);
+  vector &operator-=(const vector &v);
+
+  template <class X>
+  friend vector<X> operator+(const vector<X> &a, const vector<X> &b);
+
+  template <class X>
+  friend vector<X> operator-(const vector<X> &a, const vector<X> &b);
 
 private:
   size_t sz;
@@ -37,8 +48,7 @@ inline vector<T>::vector(std::initializer_list<T> lst)
   std::copy(lst.begin(), lst.end(), elem);
 }
 
-template <typename T>
-inline vector<T> &vector<T>::operator=(const vector &v) {
+template <typename T> inline vector<T> &vector<T>::operator=(const vector &v) {
   if (this == &v) {
     return *this;
   }
@@ -50,5 +60,36 @@ inline vector<T> &vector<T>::operator=(const vector &v) {
   return *this;
 }
 
+template <typename T> inline vector<T> &vector<T>::operator+=(const vector &v) {
+  for (int i = 0; i < sz; ++i) {
+    elem[i] += v.elem[i];
+  }
+
+  return *this;
+}
+
+template <typename T> inline vector<T> &vector<T>::operator-=(const vector &v) {
+  for (int i = 0; i < sz; ++i) {
+    elem[i] -= v.elem[i];
+  }
+
+  return *this;
+}
+
+template <typename T>
+inline vector<T> operator+(const vector<T> &a, const vector<T> &b) {
+  vector<T> tmp{a};
+  tmp += b;
+
+  return tmp;
+}
+
+template <typename T>
+inline vector<T> operator-(const vector<T> &a, const vector<T> &b) {
+  vector<T> tmp{a};
+  tmp -= b;
+
+  return tmp;
+}
 
 } // namespace mylib

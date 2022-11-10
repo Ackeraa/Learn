@@ -26,3 +26,24 @@ TEST(vector, constructor) {
   EXPECT_EQ(v6[3], 4);
   EXPECT_EQ(v6[4], 5);
 }
+
+TEST(vector, arithmetic) {
+  vector<int> v1{1, 2, 3, 4, 5};
+  vector<int> v2{1, 2, 3, 4, 5};
+
+  v1 += v2;
+  EXPECT_EQ(v1[0], 2);
+  EXPECT_EQ(v1[4], 10);
+
+  v1 -= v2;
+  EXPECT_EQ(v1[0], 1);
+  EXPECT_EQ(v1[4], 5);
+
+  vector<int>v3 = v1 + v2;
+  EXPECT_EQ(v3[0], 2);
+  EXPECT_EQ(v3[4], 10);
+
+  vector<int>v4 = v1 - v2;
+  EXPECT_EQ(v4[0], 0);
+  EXPECT_EQ(v4[1], 0);
+}
