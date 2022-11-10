@@ -56,9 +56,5 @@ TEST(matrix, arithmetic) {
   EXPECT_EQ(m1_plus_m2(0, 1), 5) << "should be 5";
   EXPECT_EQ(m1_plus_m2(1, 2), 13) << "should be 13";
 
-  try {
-    matrix<int> m1_plus_m3 = m1 + m3;
-  } catch (std::exception& e) {
-    EXPECT_STREQ(e.what(), "matrix dimensions do not match") << "should be matrix dimensions do not match";
-  }
+  EXPECT_THROW(m1 + m3, std::runtime_error);
 }

@@ -122,3 +122,11 @@ TEST(complex, compare) {
   EXPECT_TRUE(c1 >= c2) << "should be same";
   EXPECT_TRUE(c3 >= c1) << "should be greater";
 }
+
+TEST(complex, literals) {
+  complex<double> c1 = 2.0_i;
+
+  EXPECT_EQ(c1.real(), 0) << "should be 0";
+  EXPECT_EQ(c1.imag(), 2) << "should be 2";
+}
+

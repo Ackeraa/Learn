@@ -16,10 +16,11 @@ public:
   ~matrix() { delete[] elem; }
 
   int size() const { return dim[0] * dim[1]; }
-  T &operator()(int i, int j) { return elem[i * dim[1] + j]; }
   int rows() const { return dim[0]; }
   int cols() const { return dim[1]; }
 
+  T &operator()(int i, int j) { return elem[i * dim[1] + j]; }
+  const T operator()(int i, int j) const { return elem[i * dim[1] + j]; }
   matrix &operator+=(const matrix &m);
   matrix &operator-=(const matrix &m);
   matrix &operator*=(const matrix &m);

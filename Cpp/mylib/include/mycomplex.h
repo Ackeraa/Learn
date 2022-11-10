@@ -197,4 +197,9 @@ inline std::istream &operator>>(std::istream &is, complex<T> &c) {
   c.imag(i);
   return is;
 }
+
+complex<double> operator"" _i(long double d) {
+  return {0, double(d)};
+}
+
 } // namespace mylib

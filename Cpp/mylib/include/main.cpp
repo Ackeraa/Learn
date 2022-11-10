@@ -1,4 +1,5 @@
 #include "mymatrix.h"
+#include "mystring.h"
 #include <iostream>
 #include <string>
 
@@ -28,17 +29,19 @@ class Base {
   public:
     Base() = default;
     Base(int *p) : p{p}{}
-    virtual void print() {
+    int* get() { return p; }
+    const int* get() const { return p; }
+    virtual void print() const {
       std::cout << "Base: " << *p << std::endl;
     }
 
 };
 
 int main() {
-  Base b = Base(new int{10});
-  Base b1 = Base(b);
+  string s4 = "123123123213123";
+  s4 += 'a';
 
-  b.print();
+  //std::cout << s4.c_str() << std::endl;
 
   return 0;
 }
