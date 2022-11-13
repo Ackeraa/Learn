@@ -1,10 +1,9 @@
 #include <mymatrix.h>
 #include <mystring.h>
+#include <myvector.h>
 #include <iostream>
-#include <string>
 
 using namespace mylib;
-using namespace std;
 
 void f(std::initializer_list<int> lst) {
   for (int i = 0; i != lst.size(); ++i) {
@@ -59,15 +58,16 @@ void print(const Base& b) {
 }
 
 int main() {
-  Base b1{1};
-  Derived d1{2};
-  Base b2{b1};
-  
-  Test t1 = Test{1, 2};
-  Test t2{t1};
-  cout << typeid(t1).name() << endl;
-  cout << t2.x << t2.y << endl;
+  vector<int> v{1, 2, 3};
+  matrix<int> m1{{1, 2, 3}, {4, 5, 6}};
 
+  vector<int> m1v = m1 * v;
+
+  std::cout << m1v.size() << std::endl;
+
+  for (int i = 0; i != m1v.size(); ++i) {
+    std::cout << m1v[i] << std::endl;
+  }
 
   //std::cout << s4.c_str() << std::endl;
 

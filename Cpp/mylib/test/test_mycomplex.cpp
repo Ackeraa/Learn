@@ -4,7 +4,7 @@ using namespace mylib;
 
 TEST(complex, constructor) {
   complex<double> c2{};
-  complex<double> c3{1};
+  complex<float> c3{1.0f};
 
   EXPECT_EQ(c2.real(), 0);
   EXPECT_EQ(c2.imag(), 0);

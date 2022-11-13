@@ -3,6 +3,8 @@
 
 namespace mylib {
 
+template <typename T> class matrix;
+
 template <typename T> class vector {
 public:
   vector() : sz(0), elem(nullptr) {}
@@ -14,7 +16,11 @@ public:
   ~vector() { delete[] elem; }
 
   T &operator[](size_t i) { return elem[i]; }
+  const T &operator[](size_t i) const { return elem[i]; }
+
   size_t size() const { return sz; }
+
+  bool operator==(const vector &v) const;
 
   vector &operator+=(const vector &v);
   vector &operator-=(const vector &v);
@@ -24,6 +30,9 @@ public:
 
   template <class X>
   friend vector<X> operator-(const vector<X> &a, const vector<X> &b);
+
+  template <class X>
+  friend vector<X> operator*(const matrix<X> &m, const vector<X> &v);
 
 private:
   size_t sz;
@@ -46,6 +55,19 @@ template <typename T>
 inline vector<T>::vector(std::initializer_list<T> lst)
     : sz(lst.size()), elem(new T[sz]) {
   std::copy(lst.begin(), lst.end(), elem);
+}
+
+template <typename T>
+inline bool vector<T>::operator==(const vector &v) const {
+  if (sz != v.sz) {
+    return false;
+  }
+  for (int i = 0; i < sz; ++i) {
+    if (elem[i] != v.elem[i]) {
+      return false;
+    }
+  }
+  return true;
 }
 
 template <typename T> inline vector<T> &vector<T>::operator=(const vector &v) {

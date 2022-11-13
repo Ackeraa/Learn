@@ -4,3 +4,6 @@ target_link_libraries(main
   PUBLIC
   mylib
 )
+
+add_executable(template template.cpp)
+

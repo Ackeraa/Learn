@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <mymatrix.h>
+#include <myvector.h>
 
 using namespace mylib;
 
@@ -51,10 +52,15 @@ TEST(matrix, arithmetic) {
   matrix<int> m2 = {{2, 3, 4}, {5, 6, 7}};
   matrix<int> m3 = {{3, 4, 5, 5}, {6, 7, 8, 9}};
   matrix<int> m1_plus_m2 = m1 + m2;
+  vector<int> v1 = {1, 2, 3};
+  vector<int> v2 = {1, 2, 3, 4};
 
   EXPECT_EQ(m1_plus_m2(0, 0), 3) << "should be 3";
   EXPECT_EQ(m1_plus_m2(0, 1), 5) << "should be 5";
   EXPECT_EQ(m1_plus_m2(1, 2), 13) << "should be 13";
 
+  EXPECT_TRUE(m1 * v1 == vector<int>({14, 32})) << "should be {14, 32}";
+
   EXPECT_THROW(m1 + m3, std::runtime_error);
+  EXPECT_THROW(m1 * v2, std::runtime_error);
 }

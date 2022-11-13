@@ -5,6 +5,8 @@
 
 namespace mylib {
 
+template <typename T> class vector;
+
 template <class T> class matrix {
 public:
   matrix(int d1, int d2) : dim{d1, d2}, elem{new T[d1 * d2]} {}
@@ -44,6 +46,9 @@ public:
 
   template <class X>
   friend matrix<X> operator/(const matrix<X> &m, const X &v);
+
+  template <class X>
+  friend vector<X> operator*(const matrix<X> &m, const vector<X> &v);
 
 private:
   std::array<int, 2> dim;
@@ -100,5 +105,21 @@ template <class T> matrix<T> operator+(const matrix<T> &a, const matrix<T> &b) {
 
   return res;
 }
+
+template <typename T>
+vector<T> operator*(const matrix<T> &m, const vector<T> &v) {
+  if (m.dim[1] != v.size()) {
+    throw std::runtime_error("matrix and vector dimensions do not match");
+  }
+  vector<T> res(m.dim[0]);
+  for (int i = 0; i < m.dim[0]; ++i) {
+    for (int j = 0; j < m.dim[1]; ++j) {
+      res[i] += m(i, j) * v[j];
+    }
+  }
+
+  return res;
+}
+
 
 } // namespace mylib

@@ -2,129 +2,141 @@
 #include <iostream>
 
 namespace mylib {
-template <typename T> class complex {
+template <typename Scalar> class complex {
 public:
-  using value_type = T;
+  using value_type = Scalar;
 
-  complex(const T &r = T(), const T &i = T()) : re(r), im(i) {}
-  complex(const complex &c) : re{c.re}, im{c.im} {}
-  template <typename X>
-  complex(const complex<X> &c) : re{c.real()}, im{c.imag()} {}
+  complex() : re{0}, im{0} {}
+  template <typename T>
+  complex(const T &r, const T &i = 0) : re{r}, im{i} {}
+  complex(const complex &c) = default;
+  template <typename T>
+  complex(const complex<T> &c) : re{c.real()}, im{c.imag()} {}
 
-  T real() const { return re; }
-  T imag() const { return im; }
-  void real(T r) { re = r; }
-  void imag(T i) { im = i; }
+  Scalar real() const { return re; }
+  Scalar imag() const { return im; }
+  template <typename T> void real(T r) { re = r; }
+  template <typename T> void imag(T i) { im = i; }
 
-  complex &operator=(const T &x);
-  complex &operator+=(const T &x);
-  complex &operator-=(const T &x);
-  complex &operator*=(const T &x);
-  complex &operator/=(const T &x);
+  template <typename T> complex &operator=(const T &x);
+  template <typename T> complex &operator+=(const T &x);
+  template <typename T> complex &operator-=(const T &x);
+  template <typename T> complex &operator*=(const T &x);
+  template <typename T> complex &operator/=(const T &x);
 
-  template <typename X> complex &operator=(const complex<X> &x);
-  template <typename X> complex &operator+=(const complex<X> &x);
-  template <typename X> complex &operator-=(const complex<X> &x);
-  template <typename X> complex &operator*=(const complex<X> &x);
-  template <typename X> complex &operator/=(const complex<X> &x);
+  template <typename T> complex &operator=(const complex<T> &x);
+  template <typename T> complex &operator+=(const complex<T> &x);
+  template <typename T> complex &operator-=(const complex<T> &x);
+  template <typename T> complex &operator*=(const complex<T> &x);
+  template <typename T> complex &operator/=(const complex<T> &x);
 
-  template <typename X>
-  friend complex<X> operator+(const complex<X> &x, const complex<X> &y);
-  template <typename X>
-  friend complex<X> operator-(const complex<X> &x, const complex<X> &y);
-  template <typename X>
-  friend complex<X> operator*(const complex<X> &x, const complex<X> &y);
-  template <typename X>
-  friend complex<X> operator/(const complex<X> &x, const complex<X> &y);
+  template <typename T>
+  friend complex<T> operator+(const complex<T> &x, const complex<T> &y);
+  template <typename T>
+  friend complex<T> operator-(const complex<T> &x, const complex<T> &y);
+  template <typename T>
+  friend complex<T> operator*(const complex<T> &x, const complex<T> &y);
+  template <typename T>
+  friend complex<T> operator/(const complex<T> &x, const complex<T> &y);
 
-  template <typename X>
-  friend bool operator==(const complex<X> &x, const complex<X> &y);
-  template <typename X>
-  friend bool operator!=(const complex<X> &x, const complex<X> &y);
-  template <typename X>
-  friend bool operator<(const complex<X> &x, const complex<X> &y);
-  template <typename X>
-  friend bool operator<=(const complex<X> &x, const complex<X> &y);
-  template <typename X>
-  friend bool operator>(const complex<X> &x, const complex<X> &y);
-  template <typename X>
-  friend bool operator>=(const complex<X> &x, const complex<X> &y);
+  template <typename T>
+  friend bool operator==(const complex<T> &x, const complex<T> &y);
+  template <typename T>
+  friend bool operator!=(const complex<T> &x, const complex<T> &y);
+  template <typename T>
+  friend bool operator<(const complex<T> &x, const complex<T> &y);
+  template <typename T>
+  friend bool operator<=(const complex<T> &x, const complex<T> &y);
+  template <typename T>
+  friend bool operator>(const complex<T> &x, const complex<T> &y);
+  template <typename T>
+  friend bool operator>=(const complex<T> &x, const complex<T> &y);
 
   // overload operator << for complex
-  template <typename X>
-  friend std::ostream &operator<<(std::ostream &os, const complex<X> &c);
-  template <typename X>
-  friend std::istream &operator>>(std::istream &is, complex<X> &c);
+  template <typename T>
+  friend std::ostream &operator<<(std::ostream &os, const complex<T> &c);
+  template <typename T>
+  friend std::istream &operator>>(std::istream &is, complex<T> &c);
 
 private:
-  T re, im;
+  Scalar re, im;
 };
 
-template <typename T> inline complex<T> &complex<T>::operator=(const T &x) {
+template <typename Scalar>
+template <typename T>
+inline complex<Scalar> &complex<Scalar>::operator=(const T &x) {
   re = x;
   im = 0;
   return *this;
 }
 
-template <typename T> inline complex<T> &complex<T>::operator+=(const T &x) {
+template <typename Scalar>
+template <typename T>
+inline complex<Scalar> &complex<Scalar>::operator+=(const T &x) {
   re += x;
   return *this;
 }
 
-template <typename T> inline complex<T> &complex<T>::operator-=(const T &x) {
+template <typename Scalar>
+template <typename T>
+inline complex<Scalar> &complex<Scalar>::operator-=(const T &x) {
   re -= x;
   return *this;
 }
 
-template <typename T> inline complex<T> &complex<T>::operator*=(const T &x) {
+template <typename Scalar>
+template <typename T>
+inline complex<Scalar> &complex<Scalar>::operator*=(const T &x) {
   re *= x;
   im *= x;
   return *this;
 }
 
-template <typename T> inline complex<T> &complex<T>::operator/=(const T &x) {
+template <typename Scalar>
+template <typename T>
+inline complex<Scalar> &complex<Scalar>::operator/=(const T &x) {
   re /= x;
   im /= x;
   return *this;
 }
 
+template <typename Scalar>
 template <typename T>
-template <typename X>
-inline complex<T> &complex<T>::operator=(const complex<X> &x) {
+inline complex<Scalar> &complex<Scalar>::operator=(const complex<T> &x) {
   re = x.real();
   im = x.imag();
   return *this;
 }
 
+template <typename Scalar>
 template <typename T>
-template <typename X>
-inline complex<T> &complex<T>::operator+=(const complex<X> &x) {
+inline complex<Scalar> &complex<Scalar>::operator+=(const complex<T> &x) {
   re += x.real();
   im += x.imag();
   return *this;
 }
 
+template <typename Scalar>
 template <typename T>
-template <typename X>
-inline complex<T> &complex<T>::operator-=(const complex<X> &x) {
+inline complex<Scalar> &complex<Scalar>::operator-=(const complex<T> &x) {
   re -= x.real();
   im -= x.imag();
   return *this;
 }
 
+template <typename Scalar>
 template <typename T>
-template <typename X>
-inline complex<T> &complex<T>::operator*=(const complex<X> &x) {
-  T tmp = re * x.real() - im * x.imag();
+inline complex<Scalar> &complex<Scalar>::operator*=(const complex<T> &x) {
+  Scalar tmp = re * x.real() - im * x.imag();
   im = re * x.imag() + im * x.real();
   re = tmp;
   return *this;
 }
 
+template <typename Scalar>
 template <typename T>
-template <typename X>
-inline complex<T> &complex<T>::operator/=(const complex<X> &x) {
-  T tmp = re * x.real() + im * x.imag();
+inline complex<Scalar> &complex<Scalar>::operator/=(const complex<T> &x) {
+  Scalar tmp = re * x.real() + im * x.imag();
   im = im * x.real() - re * x.imag();
   re = tmp;
   return *this;
@@ -198,8 +210,6 @@ inline std::istream &operator>>(std::istream &is, complex<T> &c) {
   return is;
 }
 
-complex<double> operator"" _i(long double d) {
-  return {0, double(d)};
-}
+inline complex<double> operator"" _i(long double d) { return {0.0, double(d)}; }
 
 } // namespace mylib
