@@ -4,6 +4,8 @@ namespace mylib {
 
 template <typename... Ts> class tuple;
 
+template <> class tuple<> { tuple(){} };
+
 template <typename Head, typename... Tail>
 class tuple<Head, Tail...> : private tuple<Tail...> {
   typedef tuple<Tail...> inherited;
@@ -33,6 +35,32 @@ private:
 
   inherited &tail() { return *this; }
   const inherited &tail() const { return *this; }
+};
+
+template <typename Ret, int N>
+struct getNth {
+  template <typename... Ts>
+  static Ret &get(tuple<Ts...> &t) {
+    return getNth<Ret, N - 1>::get(t.tail());
+  }
+
+  template <typename... Ts>
+  static const Ret &get(const tuple<Ts...> &t) {
+    return getNth<Ret, N - 1>::get(t.tail());
+  }
+};
+
+template <typename Ret>
+struct getNth<Ret, 0> {
+  template <typename... Ts>
+  static Ret &get(tuple<Ts...> &t) {
+    return t.head();
+  }
+
+  template <typename... Ts>
+  static const Ret &get(const tuple<Ts...> &t) {
+    return t.head();
+  }
 };
 
 } // namespace mylib

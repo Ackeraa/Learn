@@ -1,6 +1,7 @@
 #include <mymatrix.h>
 #include <mystring.h>
 #include <myvector.h>
+#include <mytuple.h>
 #include <iostream>
 
 using namespace mylib;
@@ -58,17 +59,7 @@ void print(const Base& b) {
 }
 
 int main() {
-  vector<int> v{1, 2, 3};
-  matrix<int> m1{{1, 2, 3}, {4, 5, 6}};
-
-  vector<int> m1v = m1 * v;
-
-  std::cout << m1v.size() << std::endl;
-
-  for (int i = 0; i != m1v.size(); ++i) {
-    std::cout << m1v[i] << std::endl;
-  }
-
+  tuple<int, double, std::string> t(1, 2.3, "hello");
   //std::cout << s4.c_str() << std::endl;
 
   return 0;
