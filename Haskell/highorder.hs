@@ -79,10 +79,12 @@ num6 = map (negate . sum . tail) [[1..5], [3..6], [1..7]]
 fn x = ceiling (negate (tan (cos (max 50 x))))
 fn' = ceiling . negate . tan . cos . max 50
 
+foldr' :: (a -> b -> b) -> b -> [a] -> b
+foldr' _ z [] = z
+foldr' f z (x:xs) = f x (foldr' f z xs)
+
 foldl' :: (a -> b -> a) -> a -> [b] -> a
-foldl' f acc [] = acc
-foldl' f acc (x:xs) =
-  let acc1 = f acc x
-  in foldl' f acc1 xs
+foldl' _ z [] = z
+foldl' f z (x:xs) = foldl' f (f z x) xs
 
 main = putStrLn (show(reverse''' [1, 2, 3, 4]))

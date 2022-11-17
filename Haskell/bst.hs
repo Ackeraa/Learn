@@ -20,5 +20,4 @@ treeElem x (Node a left right)
 nums = [8, 6, 4, 1, 7, 3, 5]
 numsTree = foldr treeInsert EmptyTree nums
 
-
 main = putStrLn (show(numsTree))
