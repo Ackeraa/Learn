@@ -2,6 +2,7 @@
 #include <vector>
 #include <map>
 #include <concepts>
+#include <filesystem>
 
 using namespace std;
 
@@ -9,7 +10,20 @@ auto sqrt(double x) -> double {
   return x * x;
 }
 
+// print names of all files in directory dir
+void print_files(filesystem::path dir) {
+  try {
+    for (auto& p : filesystem::directory_iterator(dir)) {
+      cout << p.path() << '\n';
+    }
+  }
+  catch (filesystem::filesystem_error& e) {
+    cerr << e.what() << '\n';
+  }
+}
+
 int main() {
+  // regular expressio to match a C++ identifier
   vector a = {1, 2, 3};
 
   enum class Color { red, green, blue };
@@ -31,4 +45,7 @@ int main() {
   }
   
   cout << "col: " << sqrt(10) << endl;
+
+  print_files(".");
+
 }
