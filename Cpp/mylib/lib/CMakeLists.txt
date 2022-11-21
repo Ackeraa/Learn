@@ -1,7 +1,7 @@
-add_executable(matrix matrix.cpp)
+#add_executable(matrix matrix.cpp)
 
-target_link_libraries(main
-  PUBLIC
-  mylib
-)
+#target_link_libraries(main
+#  PUBLIC
+#  mylib
+#)
 

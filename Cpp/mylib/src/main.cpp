@@ -1,66 +1,34 @@
-#include <mymatrix.h>
-#include <mystring.h>
-#include <myvector.h>
-#include <mytuple.h>
 #include <iostream>
+#include <vector>
+#include <map>
+#include <concepts>
 
-using namespace mylib;
+using namespace std;
 
-void f(std::initializer_list<int> lst) {
-  for (int i = 0; i != lst.size(); ++i) {
-    std::cout << lst.begin()[i] << std::endl;
-  }
-
-  std::cout << std::endl;
-
-  for (auto p = lst.begin(); p != lst.end(); ++p) {
-    std::cout << *p << std::endl;
-  }
-
-  std::cout << std::endl;
-
-  for (auto x : lst) {
-    std::cout << x << std::endl;
-  }
-}
-
-class Base {
-  public:
-    int b;
-    Base() : b(0) {}
-    explicit Base(int b) : b(b) {}
-
-    virtual void print() const {
-      std::cout << "b=" << b << std::endl;
-    }
-};
-
-class Derived : public Base {
-  public:
-    int d;
-    Derived(int d) : d{d} {}
-
-    void print() const override {
-      Base::print();
-      std::cout << "d=" << d << std::endl;
-    }
-};
-
-class Test {
-  public:
-    int *p;
-    int x, y;
-    Test(int x, int y) : x{x}, y{y} {}
-    Test(const Test& t) : x{t.x}, y{t.y} {}
-};
-
-void print(const Base& b) {
-  b.print();
+auto sqrt(double x) -> double {
+  return x * x;
 }
 
 int main() {
-  tuple<int, double, std::string> t(1, 2.3, "hello");
-  //std::cout << s4.c_str() << std::endl;
+  vector a = {1, 2, 3};
 
-  return 0;
+  enum class Color { red, green, blue };
+  enum Traffic_light { red, yellow, green };
+  
+  Color col = Color::red;
+  int color = green;
+
+  map<string, int> m;
+  m["hello"] = 1;
+  m["world"] = 2;
+
+  for (auto &x : a) {
+    cout << x << endl;
+  }
+
+  for (const auto [key, value] : m) {
+    cout << key << " " << value << endl;
+  }
+  
+  cout << "col: " << sqrt(10) << endl;
 }
