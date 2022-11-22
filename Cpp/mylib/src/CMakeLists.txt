@@ -8,4 +8,5 @@ target_link_libraries(main
 add_executable(template template.cpp)
 add_executable(concepts concepts.cpp)
 add_executable(allocator allocator.cpp)
+add_executable(ranges ranges.cpp)
 
